@@ -1,7 +1,7 @@
 ﻿string inputData = "1-3; 5-8; 2-4";
 
-GroupManager groupManager = new GroupManager();
-groupManager.AddGroup(0);
+Table table = new Table();
+table.AddGroup(0);
 
 string[] dataSets = inputData.Split("; ");
 foreach (var dataSet in dataSets)
@@ -11,12 +11,13 @@ foreach (var dataSet in dataSets)
     int start = int.Parse(bounds[0]);
     int end = int.Parse(bounds[1]);
 
-    groupManager.GetGroup(0).AddRange(new Range(start, end));
+    table.GetGroup(0).AddRange(new Range(start, end));
 }
 
-groupManager.AddGroup(1);
-Range currentRange = groupManager.GetGroup(0).GetRange(1);
-groupManager.GetGroup(1).AddRange(currentRange);
+table.AddGroup(1);
+Range currentRange = table.GetGroup(0).GetRange(1);
+table.GetGroup(1).AddRange(currentRange);
+int end222 = table.GetGroup(1).GetRange(0).End;
 
 class Range
 {
@@ -30,11 +31,11 @@ class Range
     }
 }
 
-class GroupOfRanges
+class Group
 {
     public List<Range> Ranges { get; set; }
 
-    public GroupOfRanges()
+    public Group()
     {
         Ranges = new List<Range>();
     }
@@ -50,21 +51,21 @@ class GroupOfRanges
     }
 }
 
-class GroupManager
+class Table
 {
-    private Dictionary<int, GroupOfRanges> Groups { get; set; }
+    private Dictionary<int, Group> Groups { get; set; }
 
-    public GroupManager()
+    public Table()
     {
-        Groups = new Dictionary<int, GroupOfRanges>();
+        Groups = new Dictionary<int, Group>();
     }
 
     public void AddGroup(int groupID)
     {
-        Groups[groupID] = new GroupOfRanges();
+        Groups[groupID] = new Group();
     }
 
-    public GroupOfRanges GetGroup(int groupID)
+    public Group GetGroup(int groupID)
     {
         return Groups[groupID];
     }
