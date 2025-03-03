@@ -1,0 +1,15 @@
+D:\Программы\C Sharp\Задачи\GroupingRanges\bin\Debug\net9.0\GroupingRanges.exe
+D:\Программы\C Sharp\Задачи\GroupingRanges\bin\Debug\net9.0\GroupingRanges.deps.json
+D:\Программы\C Sharp\Задачи\GroupingRanges\bin\Debug\net9.0\GroupingRanges.runtimeconfig.json
+D:\Программы\C Sharp\Задачи\GroupingRanges\bin\Debug\net9.0\GroupingRanges.dll
+D:\Программы\C Sharp\Задачи\GroupingRanges\bin\Debug\net9.0\GroupingRanges.pdb
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.GeneratedMSBuildEditorConfig.editorconfig
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.AssemblyInfoInputs.cache
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.AssemblyInfo.cs
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.csproj.CoreCompileInputs.cache
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.sourcelink.json
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.dll
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\refint\GroupingRanges.dll
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.pdb
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\GroupingRanges.genruntimeconfig.cache
+D:\Программы\C Sharp\Задачи\GroupingRanges\obj\Debug\net9.0\ref\GroupingRanges.dll
