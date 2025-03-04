@@ -15,9 +15,40 @@ foreach (var dataSet in dataSets)
 }
 
 table.AddGroup(1);
-Range currentRange = table.GetGroup(0).GetRange(1);
-table.GetGroup(1).AddRange(currentRange);
-int end222 = table.GetGroup(1).GetRange(0).End;
+Range range1 = table.GetGroup(0).GetRange(0);
+Range range2 = table.GetGroup(0).GetRange(0);
+table.GetGroup(1).AddRange(range1);
+int x01 = 0;
+int x11 = 0;
+int x02 = 0;
+int x12 = 0;
+int numRanges = table.GetGroup(0).Ranges.Count;
+for (int n = 0; n < numRanges; n++)
+{
+    range2 = table.GetGroup(0).GetRange(n);
+    x02 = range2.Start;
+    x12 = range2.End;
+    int numGroupsOnTable = table.Groups.Count - 1;
+    int j = 1;
+    while (j <= numGroupsOnTable)
+    {
+        int numRangeInGroup = table.GetGroup(j).Ranges.Count;
+        for (int i = 0; i < numRangeInGroup; i++)
+        {
+            range1 = table.GetGroup(j).GetRange(i);
+            x01 = range1.Start;
+            x11 = range1.End;
+            if (!(x01 > x12 || x11 < x02))
+            {
+                j++;
+                table.AddGroup(j);
+                break;
+            }
+        }
+    }
+    table.GetGroup(j).AddRange(range2);
+}
+
 
 class Range
 {
@@ -53,11 +84,12 @@ class Group
 
 class Table
 {
-    private Dictionary<int, Group> Groups { get; set; }
+    public Dictionary<int, Group> Groups { get; set; }
 
     public Table()
     {
         Groups = new Dictionary<int, Group>();
+        AddGroup(0);
     }
 
     public void AddGroup(int groupID)
@@ -69,4 +101,9 @@ class Table
     {
         return Groups[groupID];
     }
+}
+
+class TableManager
+{
+
 }
