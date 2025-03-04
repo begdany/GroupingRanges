@@ -1,54 +1,12 @@
-﻿string inputData = "1-3; 5-8; 2-4";
+﻿using System.Text.RegularExpressions;
+
+string inputData = "1-3; 5-8; 2-4";
 
 Table table = new Table();
-table.AddGroup(0);
 
-string[] dataSets = inputData.Split("; ");
-foreach (var dataSet in dataSets)
-{
-    string[] bounds = dataSet.Split('-');
-
-    int start = int.Parse(bounds[0]);
-    int end = int.Parse(bounds[1]);
-
-    table.GetGroup(0).AddRange(new Range(start, end));
-}
-
-table.AddGroup(1);
-Range range1 = table.GetGroup(0).GetRange(0);
-Range range2 = table.GetGroup(0).GetRange(0);
-table.GetGroup(1).AddRange(range1);
-int x01 = 0;
-int x11 = 0;
-int x02 = 0;
-int x12 = 0;
-int numRanges = table.GetGroup(0).Ranges.Count;
-for (int n = 0; n < numRanges; n++)
-{
-    range2 = table.GetGroup(0).GetRange(n);
-    x02 = range2.Start;
-    x12 = range2.End;
-    int numGroupsOnTable = table.Groups.Count - 1;
-    int j = 1;
-    while (j <= numGroupsOnTable)
-    {
-        int numRangeInGroup = table.GetGroup(j).Ranges.Count;
-        for (int i = 0; i < numRangeInGroup; i++)
-        {
-            range1 = table.GetGroup(j).GetRange(i);
-            x01 = range1.Start;
-            x11 = range1.End;
-            if (!(x01 > x12 || x11 < x02))
-            {
-                j++;
-                table.AddGroup(j);
-                break;
-            }
-        }
-    }
-    table.GetGroup(j).AddRange(range2);
-}
-
+TableManager.ReadData(table, inputData);
+TableManager.DistributeRanges(table);
+TableManager.PrintTable(table);
 
 class Range
 {
@@ -105,5 +63,58 @@ class Table
 
 class TableManager
 {
+    public static void ReadData (Table table, string data)
+    {
+        string[] dataSets = data.Split("; ");
+        foreach (var dataSet in dataSets)
+        {
+            string[] bounds = dataSet.Split('-');
+            int start = int.Parse(bounds[0]);
+            int end = int.Parse(bounds[1]);
+            table.GetGroup(0).AddRange(new Range(start, end));
+        }
+    }
 
+    public static void ShiftFirstRange (Table table)
+    {
+        table.AddGroup(1);
+        table.GetGroup(1).AddRange(table.GetGroup(0).GetRange(0));
+    }
+
+    public static void DistributeRanges (Table table)
+    {
+        ShiftFirstRange(table);
+        foreach (Range range1 in table.GetGroup(0).Ranges.Skip(1))
+        {
+            bool interrupt = false;
+            foreach (Group group in table.Groups.Values.Skip(1))
+            {
+                interrupt = false;
+                foreach (Range range2 in group.Ranges)
+                {
+                    if (!(range1.Start > range2.End || range1.End < range2.Start))
+                    {
+                        interrupt = true;
+                        break;
+                    }
+                }
+                if (!interrupt)
+                {
+                    group.AddRange(range1);
+                    break;
+                }
+            }
+            if (interrupt)
+            {
+                int nextGroupID = table.Groups.Keys.Max() + 1;
+                table.AddGroup(nextGroupID);
+                table.GetGroup(nextGroupID).AddRange(range1);
+            }
+        }
+    }
+
+    public static void PrintTable (Table table)
+    {
+
+    }
 }
