@@ -115,6 +115,15 @@ class TableManager
 
     public static void PrintTable (Table table)
     {
-
+        int groupID = 0;
+        foreach (Group group in table.Groups.Values.Skip(1))
+        {
+            Console.Write($"{++groupID} группа: ");
+            foreach (Range range in group.Ranges)
+            {
+                Console.Write($"{range.Start}-{range.End}; ");
+            }
+            Console.Write("\n");
+        }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GroupingRanges")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09bab303f1a1960622482765052ad0121034882d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55f9f812cce13465c9f129883bfa357dffb73a0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("GroupingRanges")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GroupingRanges")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
